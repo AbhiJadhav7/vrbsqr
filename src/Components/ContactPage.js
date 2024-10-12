@@ -4,9 +4,9 @@ const ContactPage = () => {
   const [isAndroid, setIsAndroid] = useState(false);
 
   const contact = {
-    name: 'John Doe',
-    phoneNumber: '+911234567890',
-    email: 'john.doe@example.com',
+    name: 'Akash Pawar',
+    phoneNumber: '+918070207007',
+    email: 'contact@vr-bs.com',
   };
 
   // Detect if the user is on an Android/Chrome device
@@ -58,11 +58,15 @@ END:VCARD
   };
 
   return (
-    <div style={{ textAlign: 'center', padding: '50px' }}>
+    
+    <div className='content'  style={{ textAlign: 'center', padding: '50px' }}>
+        
       <h1>Contact Information</h1>
       <p>Name: {contact.name}</p>
       <p>Phone: {contact.phoneNumber}</p>
-      <p>Email: {contact.email}</p>
+      <p>Email: <a href={contact.email}>{contact.email}</a></p>
+      <p>Visit Us : <a href='https://www.vr-bs.com'>vr-bs.com</a></p>
+      
 
       {isAndroid ? (
         <button onClick={saveContact} style={{ marginTop: '20px', padding: '10px 20px' }}>
@@ -70,7 +74,7 @@ END:VCARD
         </button>
       ) : (
         <button onClick={downloadVCard} style={{ marginTop: '20px', padding: '10px 20px' }}>
-          Download Contact (vCard)
+          Save Contact
         </button>
       )}
     </div>
