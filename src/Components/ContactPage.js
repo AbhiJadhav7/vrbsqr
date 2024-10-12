@@ -76,7 +76,7 @@ const ContactPage = () => {
       <p>Name: {contact.name}</p>
       <p>WhatsApp Me : <a href='https://wa.me/918070207007'>{contact.phoneNumber}</a></p>
       <p>Email: <a href={contact.email}>{contact.email}</a></p>
-      <p>Visit Us : <a href='https://wa.me/919172445974'>vr-bs.com</a></p>
+      <p>Visit Us : <a href='https://www.vr-bs.com'>vr-bs.com</a></p>
       
       
 
