@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
         <nav>
             <div className='nav'>
-                    <div >< img  className='logo' src={logo} alt="" /></div>
+                    <div > <a href="https://www.vr-bs.com"> < img  className='logo' src={logo} alt="" /></a></div>
                     
             </div>
         </nav>
