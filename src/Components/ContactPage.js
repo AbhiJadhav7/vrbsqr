@@ -39,22 +39,33 @@ const ContactPage = () => {
   // Download vCard for non-Android devices
   const downloadVCard = () => {
     const vCardData = `
-BEGIN:VCARD
-VERSION:3.0
-FN:${contact.name}
-TEL;TYPE=CELL:${contact.phoneNumber}
-EMAIL:${contact.email}
-END:VCARD
-    `.trim(); // Ensure no leading/trailing whitespace
-
-    const blob = new Blob([vCardData], { type: 'text/vcard' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${contact.name}.vcf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  BEGIN:VCARD
+  VERSION:3.0
+  FN:${contact.name}
+  TEL;TYPE=CELL:${contact.phoneNumber}
+  EMAIL:${contact.email}
+  END:VCARD
+    `.trim(); // Ensure no extra spaces
+  
+    try {
+      const blob = new Blob([vCardData], { type: 'text/vcard' });
+      const url = URL.createObjectURL(blob);
+  
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${contact.name}.vcf`;
+  
+      // Ensure the click works on both mobile and desktop
+      document.body.appendChild(link);
+      setTimeout(() => {
+        link.click(); // Simulate click
+        document.body.removeChild(link); // Cleanup
+        URL.revokeObjectURL(url); // Revoke Blob URL after use
+      }, 100);
+    } catch (error) {
+      console.error('Download failed:', error);
+      alert('Failed to download the vCard. Please try again.');
+    }
   };
 
   return (
