@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const ContactPage = () => {
-  const [isAndroid, setIsAndroid] = useState(false);
+  const [deviceType, setDeviceType] = useState(null);
 
   const contact = {
     name: 'John Doe',
@@ -9,11 +9,14 @@ const ContactPage = () => {
     email: 'john.doe@example.com',
   };
 
-  // Detect if the user is on an Android/Chrome device
+  // Detect if the user is on an Android or iOS device
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
-    const isAndroidDevice = userAgent.includes('android') && 'contacts' in navigator;
-    setIsAndroid(isAndroidDevice);
+    if (userAgent.includes('android')) {
+      setDeviceType('android');
+    } else if (userAgent.includes('iphone') || userAgent.includes('ipad')) {
+      setDeviceType('ios');
+    }
   }, []);
 
   // Save contact for Android users
@@ -36,17 +39,14 @@ const ContactPage = () => {
     }
   };
 
-  // Download vCard for non-Android devices
-  const downloadVCard = () => {
-    const vCardData = `
-BEGIN:VCARD
+  // Download vCard for Android devices
+  const downloadAndroidVCard = () => {
+    const vCardData = `BEGIN:VCARD
 VERSION:3.0
 FN:${contact.name}
-TEL:${contact.phoneNumber}
+TEL;TYPE=CELL:${contact.phoneNumber}
 EMAIL:${contact.email}
-ORG:Example Corp
-END:VCARD
-    `;
+END:VCARD`;
 
     const blob = new Blob([vCardData], { type: 'text/vcard' });
     const url = URL.createObjectURL(blob);
@@ -58,6 +58,34 @@ END:VCARD
     document.body.removeChild(link);
   };
 
+  // Download vCard for iOS devices
+  const downloadIOSVCard = () => {
+    const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN:${contact.name}
+TEL;TYPE=CELL:${contact.phoneNumber}
+EMAIL:${contact.email}
+N:${contact.name}
+END:VCARD`;
+
+    const blob = new Blob([vCardData], { type: 'text/vcard' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${contact.name}.vcf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleDownload = () => {
+    if (deviceType === 'android') {
+      downloadAndroidVCard();
+    } else if (deviceType === 'ios') {
+      downloadIOSVCard();
+    }
+  };
+
   return (
     <div style={{ textAlign: 'center', padding: '50px' }}>
       <h1>Contact Information</h1>
@@ -65,12 +93,12 @@ END:VCARD
       <p>Phone: {contact.phoneNumber}</p>
       <p>Email: {contact.email}</p>
 
-      {isAndroid ? (
+      {deviceType === 'android' ? (
         <button onClick={saveContact} style={{ marginTop: '20px', padding: '10px 20px' }}>
           Save Contact
         </button>
       ) : (
-        <button onClick={downloadVCard} style={{ marginTop: '20px', padding: '10px 20px' }}>
+        <button onClick={handleDownload} style={{ marginTop: '20px', padding: '10px 20px' }}>
           Download Contact (vCard)
         </button>
       )}
