@@ -19,21 +19,21 @@ const ContactPage = () => {
   // Save contact for Android users
   const saveContact = async () => {
     try {
-      const { name, phoneNumber, email } = contact;
-      const newContact = { name, tel: [phoneNumber], email: [email] };
-
-      const permission = await navigator.permissions.query({ name: 'contacts' });
-
-      if (permission.state === 'granted') {
-        await navigator.contacts.save([newContact]);
-        alert('Contact saved successfully!');
-      } else {
-        alert('Please allow permission to save the contact.');
+        const { name, phoneNumber, email } = contact;
+        const newContact = { name, tel: [phoneNumber], email: [email] };
+    
+        const permission = await navigator.permissions.query({ name: 'contacts' });
+    
+        if (permission.state === 'granted' || permission.state === 'prompt') {
+          await navigator.contacts.save([newContact]);
+          alert('Contact saved successfully!');
+        } else {
+          alert('Permission denied. Please grant permission and try again.');
+        }
+      } catch (error) {
+        console.error('Error saving contact:', error);
+        alert('Failed to save contact. Try the download option instead.');
       }
-    } catch (error) {
-      console.error('Error saving contact:', error);
-      alert('Failed to save contact. Try the download option.');
-    }
   };
 
   // Download vCard for non-Android devices
