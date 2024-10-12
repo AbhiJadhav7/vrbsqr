@@ -77,6 +77,7 @@ END:VCARD
           Save Contact
         </button>
       )}
+      <p style={{fontSize:'10px'}}>(After downloading, kindly <b>Open</b> the file to Save)</p>
     </div>
   );
 };
