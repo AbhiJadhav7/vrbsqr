@@ -124,9 +124,9 @@ END:VCARD`.trim();
           </button>
           <button
             onClick={handleAndroidFallback}
-            style={{ marginTop: '10px', padding: '10px 20px' }}
+            style={{ marginTop: '10px', padding: '10px 20px' }} //android
           >
-            Save Contact (Android)
+            Save Contact
           </button>
         </>
       ) : (
