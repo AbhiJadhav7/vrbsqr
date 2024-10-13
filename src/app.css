@@ -1,14 +1,127 @@
 .logo{
-    width: 250px;
-    height: 130px;
+    width: 350px;
+    height: 180px;
 }
-.App{
+/* Base Styles */
+body {
     background: rgb(189,168,168);
-    background: linear-gradient(0deg, rgb(176, 112, 112) 0%, rgb(85, 18, 18) 100%);
+    background: linear-gradient(0deg, rgb(112, 161, 176) 0%, rgb(8, 36, 58) 100%);
     height: 100vh;
     color: rgba(251, 251, 251, 0.973);
-    font: 'Poppins';
-}
+    margin: 0;
+    overflow: hidden; /* Prevent scrolling */
+    font-family: 'Poppins', sans-serif; /* Use Poppins font */
+  }
+  
+  /* Intro Page Styling */
+  .intro-page {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: diagonalFadeIn 2.5s ease-out forwards; /* Enhanced animation */
+    z-index: 9999;
+  }
+  
+  .intro-page img {
+    max-width: 350px;
+    height: auto;
+    opacity: 0; /* Start hidden */
+    animation: logoZoomFade 3.5s forwards; /* Apply the new logo zoom and fade animation */
+  }
+  
+  /* Fade-In Text Styles */
+  .fade-in-text {
+    color: white; /* Text color */
+    font-size: 2.5em; /* Adjust size as needed */
+    text-align: center; /* Center the text */
+    position: fixed; /* Fixed position to keep it centered */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Centering transformation */
+    opacity: 0; /* Start hidden */
+    animation: fadeInZoom 1.5s forwards; /* Fade in and zoom in */
+  }
+  
+  /* Enhanced diagonal fade-in animation */
+  @keyframes diagonalFadeIn {
+    0% {
+      clip-path: polygon(0% 100%, 0% 100%, 0% 100%, 0% 100%);
+    }
+    100% {
+      clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%);
+    }
+  }
+  
+  /* Zoom and Fade-Out Animation for Logo */
+  @keyframes logoZoomFade {
+    0% {
+      opacity: 0; /* Start hidden */
+      transform: scale(0.7); /* Start small */
+    }
+    50% {
+      opacity: 1; /* Fully visible */
+      transform: scale(1); /* Normal size */
+    }
+    70% {
+      opacity: 1; /* Still visible */
+      transform: scale(1); /* Slight zoom */
+    }
+    100% {
+      opacity: 0; /* Fade out */
+      transform: scale(1); /* Keep slight zoom during fade-out */
+    }
+  }
+  
+  /* Fade-Out Animation for Text */
+  @keyframes textFadeOut {
+    0% {
+      opacity: 1; /* Fully visible */
+    }
+    100% {
+      opacity: 0; /* Fade out */
+    }
+  }
+  
+  /* Use a faster duration for the fade-out effect */
+  .fade-out {
+    animation: textFadeOut 0.5s forwards; /* Adjusted to 1s for faster fade out */
+  }
+  
+  /* Fade-In and Zoom Animation */
+  @keyframes fadeInZoom {
+    0% {
+      opacity: 0; /* Start hidden */
+      transform: translate(-50%, -50%) scale(0.8); /* Scale down */
+    }
+    100% {
+      opacity: 1; /* Fully visible */
+      transform: translate(-50%, -50%) scale(1); /* Scale to normal */
+    }
+  }
+  
+  /* Content Fade-in Animation */
+  @keyframes showContent {
+    0% {
+      opacity: 0; /* Start hidden */
+    }
+    100% {
+      opacity: 1; /* Fully visible */
+    }
+  }
+  
+  /* Content Styles */
+  .content {
+    display: block; /* Show content */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    animation: showContent 1.5s forwards; /* Apply fade-in animation */
+  }
+  
 p{
     font-size: large;
 }
