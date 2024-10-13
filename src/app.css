@@ -14,7 +14,15 @@ body {
   }
   
   /* Intro Page Styling */
+  .intro-page img{
+    z-index: -1;
+  }
   .intro-page {
+    
+    pointer-events: none; /* Prevent it from blocking content */
+
+    position: absolute;
+    z-index: -101;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -27,6 +35,7 @@ body {
   }
   
   .intro-page img {
+    z-index:-11;
     max-width: 350px;
     height: auto;
     opacity: 0; /* Start hidden */
@@ -45,7 +54,12 @@ body {
     opacity: 0; /* Start hidden */
     animation: fadeInZoom 1.5s forwards; /* Fade in and zoom in */
   }
-  
+  .hero{
+    object-fit: contain;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+  }
   /* Enhanced diagonal fade-in animation */
   @keyframes diagonalFadeIn {
     0% {
@@ -74,6 +88,7 @@ body {
       opacity: 0; /* Fade out */
       transform: scale(1); /* Keep slight zoom during fade-out */
     }
+
   }
   
   /* Fade-Out Animation for Text */
@@ -88,7 +103,9 @@ body {
   
   /* Use a faster duration for the fade-out effect */
   .fade-out {
-    animation: textFadeOut 0.5s forwards; /* Adjusted to 1s for faster fade out */
+    animation: textFadeOut 0.5s forwards;
+    transform: scale(-10);
+    
   }
   
   /* Fade-In and Zoom Animation */
@@ -115,10 +132,11 @@ body {
   
   /* Content Styles */
   .content {
+    z-index: 11111;
     display: block; /* Show content */
     color: white;
     text-align: center;
-    padding: 20px;
+    padding:5px;
     animation: showContent 1.5s forwards; /* Apply fade-in animation */
   }
   
@@ -127,7 +145,7 @@ p{
 }
 a{
     text-decoration: none;
-    color: rgb(246, 221, 188);
+    color: rgb(255, 179, 57);
 }
 .nav{
     padding: 40px 0px;
@@ -137,10 +155,14 @@ a{
 }
 
 span{
-    font-weight: 500;
+    font-weight: 800;
+    letter-spacing: 1px;
     color: white;
+    gap: 0.5;
 }
-
+.sp{
+    font-weight: 600;
+}
 button{
     width: 180px;
     height: 55px;
@@ -150,4 +172,40 @@ button{
     color: rgba(31, 29, 29, 0.81);
     padding: 2px;
 }
-
+.anchor1{
+    letter-spacing: 3.9px;
+}
+.advisory{
+    font-size: 10px;
+}
+.anchor2{
+    font-size: 15px;
+}
+.anchor3{
+    letter-spacing: 4px;
+}
+@media (max-width:400px){
+    .anchor1{
+        letter-spacing: 3.7px;
+    }
+    .advisory{
+        font-size: 9px;
+    }
+}
+@media (max-width:360px){
+    .anchor1{
+        letter-spacing: 2.7px;
+    }
+    .anchor2{
+        font-size: 13.85px;
+    }
+    .anchor3{
+        letter-spacing: 2.8px;
+    }
+    .advisory{
+        font-size: 9px;
+    }
+}
+.intro-page.hidden {
+    display: none; /* Ensure it's removed from the layout */
+  }

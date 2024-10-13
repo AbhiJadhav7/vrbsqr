@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-
+import hero from '../hero.jpg'; // Make sure to replace with the correct path to your image
+import ContactsIcon from '@mui/icons-material/Contacts';
+import MailIcon from '@mui/icons-material/Mail';
+import LanguageIcon from '@mui/icons-material/Language';
+import logo from '../logo.png'
 const ContactPage = () => {
   const [isAndroid, setIsAndroid] = useState(false);
 
@@ -7,7 +11,7 @@ const ContactPage = () => {
     name: 'Akash Pawar',
     phoneNumber: '+918070207007',
     email: 'akash.pawar@vr-bs.com',
-    jobTitle:'Founder & Managing Director'
+    jobTitle: 'Founder & Managing Director'
   };
 
   // Detect if the user is on an Android/Chrome device
@@ -22,7 +26,7 @@ const ContactPage = () => {
     try {
       const { name, phoneNumber, email } = contact;
       const newContact = { name, tel: [phoneNumber], email: [email] };
-      
+
       if ('permissions' in navigator) {
         const permission = await navigator.permissions.query({ name: 'contacts' });
         if (permission.state === 'granted') {
@@ -85,28 +89,36 @@ END:VCARD`.trim();
   };
 
   return (
-    <div className="content" style={{ textAlign: 'center', padding: '50px' }}>
-      <h1>Contact Information</h1>
-      <p>Name: <span>{contact.name}</span></p>
-      <p>Job Title: <span>{contact.jobTitle}</span></p>
-      <p>
-        WhatsApp Me:{' '}
-        <a href={`https://wa.me/${contact.phoneNumber.replace('+', '')}`}>
+    <div className="content" style={{ textAlign: 'center', padding: '20px 10px' }}>
+      <div style={{ width: '200px', height: '200px', borderRadius: '50%', backgroundColor: '#ccc', display: 'inline-block', marginTop: '20px', overflow: 'hidden' }}>
+        <img
+          className='hero'
+          src={hero}
+          alt=""
+          style={{ width: '108%', height: '130%', objectFit: 'cover' }} // Ensure the image fills the circle
+        />
+      </div>
+      <p style={{ lineHeight: '1.4' }}>
+        <span>{contact.name}</span><br />
+        <u><span className='sp'>{contact.jobTitle}</span></u>
+      </p>
+      <p className='anchors' style={{lineHeight:'1.7'}}>
+      <ContactsIcon style={{ marginRight: '6px',top:'7px',right:'2px',position:'relative',color:'rgb(246, 221, 188)' }} />
+        <a className='anchor3'  href={`https://wa.me/${contact.phoneNumber.replace('+', '')}`}>
           {contact.phoneNumber}
-        </a>
-      </p>
-      <p>
-        Email: <a href={`mailto:${contact.email}`}>{contact.email}</a>
-      </p>
-      <p>
-        Visit Us: <a href="https://www.vr-bs.com">vr-bs.com</a>
-      </p>
+        </a><br />
+        <LanguageIcon style={{ marginRight: '6px',top:'7px',right:'2px',position:'relative',color:'rgb(246, 221, 188)' }} />
+        <a className='anchor1'  href="https://www.vr-bs.com">www.vr-bs.com</a><br />
+        <MailIcon style={{ marginRight: '6px',top:'7px',right:'2px',position:'relative',color:'rgb(246, 221, 188)' }} />
+         <a className='anchor2'  href={`mailto:${contact.email}`}>{contact.email}</a><br />
+        
 
+      </p>
       {isAndroid ? (
         <>
           <button
             onClick={saveContact}
-            style={{ marginTop: '20px', padding: '10px 20px' }}
+            style={{ marginTop: '10px', padding: '10px 20px',display:'none' }}
           >
             Save Contact (PC / IOS)
           </button>
@@ -120,14 +132,18 @@ END:VCARD`.trim();
       ) : (
         <button
           onClick={downloadVCard}
-          style={{ marginTop: '20px', padding: '10px 20px' }}
+          style={{marginTop: '10px', padding: '10px 20px' }}
         >
           Save Contact
         </button>
       )}
-      <p style={{ fontSize: '10px' }}>
+      <p className='advisory'>
         (After downloading, kindly <b>Open</b> the file to Save)
       </p>
+      <br />
+      <div style={{display:'flex',alignItems:"center",justifyContent:"center"}}>
+      <img style={{width:'250px'}} src={logo} alt="" />
+      </div>
     </div>
   );
 };
