@@ -4,9 +4,9 @@ const ContactPage = () => {
   const [isAndroid, setIsAndroid] = useState(false);
 
   const contact = {
-    name: 'Akash Pawar',
-    phoneNumber: '+918070207007',
-    email: 'akash.pawar@vr-bs.com',
+    name: 'Kirti Pawar',
+    phoneNumber: '+918600224847',
+    email: 'kirti.pawar@vr-bs.com',
     jobTitle:'Founder & Managing Director'
   };
 
