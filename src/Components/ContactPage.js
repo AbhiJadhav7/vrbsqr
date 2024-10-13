@@ -112,7 +112,7 @@ END:VCARD`.trim();
             onClick={handleAndroidFallback}
             style={{ marginTop: '10px', padding: '10px 20px' }}
           >
-            Save Contact (android)
+            Save Contact (Android)
           </button>
         </>
       ) : (
