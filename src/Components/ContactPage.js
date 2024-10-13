@@ -8,9 +8,9 @@ const ContactPage = () => {
   const [isAndroid, setIsAndroid] = useState(false);
 
   const contact = {
-    name: 'Kirti Pawar',
-    phoneNumber: '+918600224847',
-    email: 'kirti.pawar@vr-bs.com',
+    name: 'Akash Pawar',
+    phoneNumber: '+918070207007',
+    email: 'akash.pawar@vr-bs.com',
     jobTitle: 'Founder & Managing Director'
   };
 
@@ -89,13 +89,13 @@ END:VCARD`.trim();
   };
 
   return (
-    <div className="content" style={{ textAlign: 'center', padding: '40px 20px' }}>
+    <div className="content" style={{ textAlign: 'center', padding: '40px 10px' }}>
       <div style={{ width: '200px', height: '200px', borderRadius: '50%', backgroundColor: '#ccc', display: 'inline-block', marginTop: '20px', overflow: 'hidden' }}>
         <img
           className='hero'
           src={hero}
           alt=""
-          style={{position:'relative' , width: '100%', height: '100%', objectFit: 'cover' }} // Ensure the image fills the circle
+          style={{position:'relative',left:'-50px', width: '160%', height: '130%', objectFit: 'cover' }} // Ensure the image fills the circle
         />
       </div>
       <p style={{ lineHeight: '1.4' }}>
@@ -124,9 +124,9 @@ END:VCARD`.trim();
           </button>
           <button
             onClick={handleAndroidFallback}
-            style={{ marginTop: '10px', padding: '10px 20px' }} //android
+            style={{ marginTop: '10px', padding: '10px 20px' }}//android
           >
-            Save Contact
+            Save Contact 
           </button>
         </>
       ) : (
