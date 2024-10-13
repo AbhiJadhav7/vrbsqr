@@ -6,7 +6,8 @@ const ContactPage = () => {
   const contact = {
     name: 'Akash Pawar',
     phoneNumber: '+918070207007',
-    email: 'contact@vr-bs.com',
+    email: 'akash.pawar@vr-bs.com',
+    jobTitle:'Founder & Managing Director'
   };
 
   // Detect if the user is on an Android/Chrome device
@@ -86,7 +87,8 @@ END:VCARD`.trim();
   return (
     <div className="content" style={{ textAlign: 'center', padding: '50px' }}>
       <h1>Contact Information</h1>
-      <p>Name: {contact.name}</p>
+      <p>Name: <span>{contact.name}</span></p>
+      <p>Job Title: <span>{contact.jobTitle}</span></p>
       <p>
         WhatsApp Me:{' '}
         <a href={`https://wa.me/${contact.phoneNumber.replace('+', '')}`}>
