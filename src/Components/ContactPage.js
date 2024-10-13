@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 const ContactPage = () => {
   const [isAndroid, setIsAndroid] = useState(false);
-  const [contactsSupported, setContactsSupported] = useState(false);
 
   const contact = {
     name: 'Akash Pawar',
@@ -10,17 +9,14 @@ const ContactPage = () => {
     email: 'contact@vr-bs.com',
   };
 
-  // Detect if the user is on Android and if 'navigator.contacts' is supported
+  // Detect if the user is on an Android/Chrome device
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();
-    const isAndroidDevice = userAgent.includes('android');
-    const contactsAvailable = 'contacts' in navigator;
-    
+    const isAndroidDevice = userAgent.includes('android') && 'contacts' in navigator;
     setIsAndroid(isAndroidDevice);
-    setContactsSupported(contactsAvailable);
   }, []);
 
-  // Save contact for Android users (only if contacts API is supported)
+  // Save contact for Android users
   const saveContact = async () => {
     try {
       const { name, phoneNumber, email } = contact;
@@ -34,15 +30,45 @@ const ContactPage = () => {
           return;
         }
       }
-      alert('Permission denied. Please use the download option.');
+      alert('Contact saving not supported. Please use the download option.');
     } catch (error) {
       console.error('Error saving contact:', error);
       alert('Failed to save contact. Try the download option.');
     }
   };
 
-  // Download vCard fallback (if contacts API isn't supported)
-  const downloadVCardFallback = () => {
+  // Download vCard for non-Android devices or as fallback
+  const downloadVCard = () => {
+    const vCardData = `
+BEGIN:VCARD
+VERSION:3.0
+FN:${contact.name}
+TEL;TYPE=CELL:${contact.phoneNumber}
+EMAIL:${contact.email}
+END:VCARD`.trim();
+
+    try {
+      const blob = new Blob([vCardData], { type: 'text/vcard' });
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${contact.name}.vcf`;
+
+      document.body.appendChild(link);
+      setTimeout(() => {
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }, 100);
+    } catch (error) {
+      console.error('Download failed:', error);
+      alert('Failed to download the vCard. Please try again.');
+    }
+  };
+
+  // Fallback for Android where download might fail
+  const handleAndroidFallback = () => {
     const vCardData = `
 BEGIN:VCARD
 VERSION:3.0
@@ -74,22 +100,29 @@ END:VCARD`.trim();
         Visit Us: <a href="https://www.vr-bs.com">vr-bs.com</a>
       </p>
 
-      {isAndroid && contactsSupported ? (
+      {isAndroid ? (
+        <>
+          <button
+            onClick={saveContact}
+            style={{ marginTop: '20px', padding: '10px 20px' }}
+          >
+            Save Contact
+          </button>
+          <button
+            onClick={handleAndroidFallback}
+            style={{ marginTop: '10px', padding: '10px 20px' }}
+          >
+            Download Contact (android)
+          </button>
+        </>
+      ) : (
         <button
-          onClick={saveContact}
+          onClick={downloadVCard}
           style={{ marginTop: '20px', padding: '10px 20px' }}
         >
           Save Contact
         </button>
-      ) : (
-        <button
-          onClick={downloadVCardFallback}
-          style={{ marginTop: '20px', padding: '10px 20px' }}
-        >
-          Download vCard
-        </button>
       )}
-
       <p style={{ fontSize: '10px' }}>
         (After downloading, kindly <b>Open</b> the file to Save)
       </p>
