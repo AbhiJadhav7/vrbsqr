@@ -106,13 +106,13 @@ END:VCARD`.trim();
             onClick={saveContact}
             style={{ marginTop: '20px', padding: '10px 20px' }}
           >
-            Save Contact
+            Save Contact (PC / IOS)
           </button>
           <button
             onClick={handleAndroidFallback}
             style={{ marginTop: '10px', padding: '10px 20px' }}
           >
-            Download Contact (android)
+            Save Contact (android)
           </button>
         </>
       ) : (
