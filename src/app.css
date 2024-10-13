@@ -179,20 +179,23 @@ button{
     font-size: 10px;
 }
 .anchor2{
-    font-size: 15px;
+    font-size: 16.9px;
 }
 .anchor3{
     letter-spacing: 4px;
 }
 @media (max-width:400px){
     .anchor1{
-        letter-spacing: 4.6px;
+        letter-spacing: 4.9px;
     }
     .anchor2{
         letter-spacing: 0.9px;
     }
     .advisory{
         font-size: 9px;
+    }
+    .anchor3{
+        letter-spacing: 4.6px;
     }
 }
 @media (max-width:360px){
