@@ -3,6 +3,12 @@ import hero from '../hero.jpg'; // Make sure to replace with the correct path to
 import ContactsIcon from '@mui/icons-material/Contacts';
 import MailIcon from '@mui/icons-material/Mail';
 import LanguageIcon from '@mui/icons-material/Language';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
+
+               //        ↑       ↑
+               //   Capital "I" and capital "N"
+
 import logo from '../logo.png'
 const ContactPage = () => {
   const [isAndroid, setIsAndroid] = useState(false);
@@ -104,15 +110,14 @@ END:VCARD`.trim();
       </p>
       <p className='anchors' style={{lineHeight:'1.7'}}>
       <ContactsIcon style={{ marginRight: '6px',top:'7px',right:'2px',position:'relative',color:'rgb(246, 221, 188)' }} />
-        <a className='anchor3'  href={`https://wa.me/${contact.phoneNumber.replace('+', '')}`}>
+        <a target='_blank' rel="noreferrer" className='anchor3'  href={`https://wa.me/${contact.phoneNumber.replace('+', '')}`}>
           {contact.phoneNumber}
         </a><br />
         <LanguageIcon style={{ marginRight: '6px',top:'7px',right:'2px',position:'relative',color:'rgb(246, 221, 188)' }} />
-        <a className='anchor1'  href="https://www.vr-bs.com">www.vr-bs.com</a><br />
+        <a target='_blank' rel="noreferrer" className='anchor1'  href="https://www.vr-bs.com">www.vr-bs.com</a><br />
         <MailIcon style={{ marginRight: '6px',top:'7px',right:'2px',position:'relative',color:'rgb(246, 221, 188)' }} />
-         <a className='anchor2'  href={`mailto:${contact.email}`}>{contact.email}</a><br />
-        
-
+         <a target='_blank' rel="noreferrer" className='anchor2'  href={`mailto:${contact.email}`}>{contact.email}</a><br />
+       
       </p>
       {isAndroid ? (
         <>
@@ -139,11 +144,15 @@ END:VCARD`.trim();
       )}
       <p className='advisory'>
         (After downloading, kindly <b>Open</b> the file to Save)
-      </p>
       <br />
+       <a target='_blank' rel="noreferrer" href="https://www.linkedin.com/in/akash-pawar-058241164?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><LinkedInIcon  fontSize='large' style={{ marginRight: '6px',top:'7px',right:'2px',position:'relative',color:'rgb(248, 236, 219)' }}/></a>
+       <a target='_blank' rel="noreferrer" href="https://www.instagram.com/akash4828?igsh=YmtrdXg0bmZ6Mzk4"><InstagramIcon fontSize="large"style={{ marginRight: '6px',top:'7px',right:'2px',position:'relative',color:'rgb(248, 236, 219)' }}/></a>
+        </p>
+      
       <div style={{display:'flex',alignItems:"center",justifyContent:"center"}}>
       <img style={{width:'250px'}} src={logo} alt="" />
       </div>
+
     </div>
   );
 };
