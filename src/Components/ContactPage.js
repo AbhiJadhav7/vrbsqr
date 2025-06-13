@@ -146,7 +146,7 @@ END:VCARD`.trim();
         (After downloading, kindly <b>Open</b> the file to Save)
       <br />
        <a target='_blank' rel="noreferrer" href="https://www.linkedin.com/in/akash-pawar-058241164?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><LinkedInIcon  fontSize='large' style={{ marginRight: '6px',top:'7px',right:'2px',position:'relative',color:'rgb(248, 236, 219)' }}/></a>
-       <a target='_blank' rel="noreferrer" href="https://www.instagram.com/akash4828?igsh=YmtrdXg0bmZ6Mzk4"><InstagramIcon fontSize="large"style={{ marginRight: '6px',top:'7px',right:'2px',position:'relative',color:'rgb(248, 236, 219)' }}/></a>
+       <a target='_blank' rel="noreferrer" href="https://www.instagram.com/vrbs_pune?igsh=MWZiYmhubnJ3bnltNw=="><InstagramIcon fontSize="large"style={{ marginRight: '6px',top:'7px',right:'2px',position:'relative',color:'rgb(248, 236, 219)' }}/></a>
         </p>
       
       <div style={{display:'flex',alignItems:"center",justifyContent:"center"}}>
