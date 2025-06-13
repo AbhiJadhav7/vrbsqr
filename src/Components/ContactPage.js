@@ -98,9 +98,11 @@ END:VCARD`.trim();
     <div className="content" style={{ textAlign: 'center', padding: '40px 10px' }}>
       <div style={{ width: '200px', height: '200px', borderRadius: '50%', backgroundColor: '#ccc', display: 'inline-block', marginTop: '20px', overflow: 'hidden' }}>
         <img
+        
           className='hero'
           src={hero}
           alt=""
+          loading="lazy"
           style={{position:'relative',left:'-50px', width: '160%', height: '130%', objectFit: 'cover' }} // Ensure the image fills the circle
         />
       </div>
