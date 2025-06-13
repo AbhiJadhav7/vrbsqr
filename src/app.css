@@ -9,7 +9,7 @@ body {
     height: 100vh;
     color: rgba(251, 251, 251, 0.973);
     margin: 0;
-    overflow: hidden; /* Prevent scrolling */
+    overflow-x: hidden; /* Prevent scrolling */
     font-family: 'Poppins', sans-serif; /* Use Poppins font */
   }
   
